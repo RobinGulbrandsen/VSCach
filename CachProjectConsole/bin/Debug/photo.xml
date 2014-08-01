@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<photo id="12226069325" secret="965c8cfb0d" server="7316" farm="8" dateuploaded="1391117947" isfavorite="0" license="0" safety_level="0" rotation="0" originalsecret="e1aef0f272" originalformat="jpg" views="37" media="photo">
+	<owner nsid="101115693@N04" username="mollerarkivet" realname="Møller Arkiv" location="" iconserver="0" iconfarm="0" path_alias="mollerarkivet" />
+	<title>Dias23-001</title>
+	<description />
+	<visibility ispublic="1" isfriend="0" isfamily="0" />
+	<dates posted="1391117947" taken="2014-01-30 12:54:24" takengranularity="8" lastupdate="1391578929" />
+	<editability cancomment="0" canaddmeta="0" />
+	<publiceditability cancomment="1" canaddmeta="0" />
+	<usage candownload="1" canblog="0" canprint="0" canshare="1" />
+	<comments>0</comments>
+	<notes />
+	<people haspeople="0" />
+	<tags>
+		<tag id="101083554-12226069325-45658" author="101115693@N04" authorname="mollerarkivet" raw="Dias" machine_tag="0">dias</tag>
+	</tags>
+	<urls>
+		<url type="photopage">https://www.flickr.com/photos/mollerarkivet/12226069325/</url>
+	</urls>
+</photo>
+</rsp>
