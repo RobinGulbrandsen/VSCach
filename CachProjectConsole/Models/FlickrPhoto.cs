@@ -30,7 +30,7 @@ namespace CachProjectConsole.Models
         [XmlElement("visibility")]
         public FlickrVisisibility Visisibility { set; get; }
 
-
+        public FlickrPhotoSizesModel Sizes { set; get; }
     }
 
     public class FlickrUrl

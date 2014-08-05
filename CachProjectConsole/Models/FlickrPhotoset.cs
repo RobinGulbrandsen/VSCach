@@ -44,13 +44,14 @@ namespace CachProjectConsole.Models
         public DateTime DateTaken { set; get; }
         public int DateGranulatiry { set; get; }
         public List<string> Tags { set; get; }
-        public List<string> Sizes { set; get; }
+
+        public FlickrPhotoSizesModel Sizes { set; get; }
 
         public void SetValues(FlickrPhoto photo)
         {
             Title = photo.Title;
             Description = photo.Description;
-            Sizes = photo.Urls;
+            Sizes = photo.Sizes;
             IsPublic = photo.Visisibility.Public.Equals("1");
             DateGranulatiry = Convert.ToInt32(photo.Date.Granularity);
 

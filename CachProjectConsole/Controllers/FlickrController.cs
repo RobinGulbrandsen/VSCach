@@ -16,11 +16,13 @@ namespace CachProjectConsole.Controllers
         private const string PhotoListMethod = "method=flickr.photosets.getPhotos";
         private const string PhotoMethod = "method=flickr.photos.getInfo";
         private const string CollectionMethod = "method=flickr.collections.getTree";
+        private const string SizesMethod = "method=flickr.photos.getSizes";
         private const string ApiKeyUserAndFormat = "&api_key=7fa05383d113e5eec34f348b2b596237&user_id=101115693%40N04&format=rest";
 
         private const string CollectionUrl = BaseUrl + CollectionMethod + ApiKeyUserAndFormat;
         private const string PhotoListUrl = BaseUrl + PhotoListMethod + ApiKeyUserAndFormat;
         private const string PhotoUrl = BaseUrl + PhotoMethod + ApiKeyUserAndFormat;
+        private const string SizesUrl = BaseUrl + SizesMethod + ApiKeyUserAndFormat;
 
         private static int count = 0;
         public static void HandleFlickr()
@@ -42,20 +44,20 @@ namespace CachProjectConsole.Controllers
                     {
                         var photoFromFlickr = GetPhoto(p.Id);
                         p.SetValues(photoFromFlickr);
+                        p.Sizes = GetSizes(p.Id);
                         set.Photos.Add(p);
 
                         if (p.IsPrimary.Equals("1"))
                         {
-                            set.Icon = p.Sizes.First();
+                            set.Icon = p.Sizes.Large;
                         }
                         i++;
                         Console.WriteLine("complete: " + i);
-
-                        if (i > 2000) break;
+                        if (i > 1999) break;
                     }
-                    if (i > 2000) break;
+                    if (i > 1999) break;
                 } 
-                if (i > 2000) break;
+                if (i > 1999) break;
             }
 
             //convert list to string
@@ -103,6 +105,20 @@ namespace CachProjectConsole.Controllers
             var xml = (FlickrPhotoRsp)xmlSerializer.Deserialize(new StringReader(xmlResult));
 
             return xml.Photo;
+        }
+
+        public static FlickrPhotoSizesModel GetSizes(string photoId)
+        {
+            var rsp = new FlickrPhotoSizesRsp();
+            var xmlSerializer = new XmlSerializer(rsp.GetType());
+
+            var url = SizesUrl + "&photo_id=" + photoId;
+
+            var xmlResult = HttpClient.Get(url);
+
+            var xml = (FlickrPhotoSizesRsp)xmlSerializer.Deserialize(new StringReader(xmlResult));
+
+            return new FlickrPhotoSizesModel(xml.Sizes);
         }
     }
 }

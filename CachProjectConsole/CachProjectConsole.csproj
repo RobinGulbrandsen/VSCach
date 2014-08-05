@@ -53,12 +53,15 @@
     <Compile Include="Models\FlickrCollection.cs" />
     <Compile Include="Models\FlickrPhoto.cs" />
     <Compile Include="Models\FlickrPhotoset.cs" />
+    <Compile Include="Models\FlickrPhotoSizes.cs" />
+    <Compile Include="Models\FlickrPhotoSizesModel.cs" />
     <Compile Include="Models\Vimeo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="bin\Debug\flickr.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
