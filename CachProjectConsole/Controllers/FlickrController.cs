@@ -31,33 +31,42 @@ namespace CachProjectConsole.Controllers
             var collections = GetCollections();
 
             var i = 0;
+            var setNr = 1;
+            var colNr = 0;
+
             //For each collection in the collections, get the sets
             foreach (var c in collections)
             {
-                foreach (var set in c.Sets)
+                if (colNr == 5)
                 {
-                    var photoset = GetPhotoset(set.Id);
-
-                    set.Photos = new List<FlickrPhotoInSet>();
-
-                    foreach (var p in photoset.FlickrPhoto)
+                    
+                Console.WriteLine("collection : " + colNr + " / " + collections.Count);
+                    foreach (var set in c.Sets)
                     {
-                        var photoFromFlickr = GetPhoto(p.Id);
-                        p.SetValues(photoFromFlickr);
-                        p.Sizes = GetSizes(p.Id);
-                        set.Photos.Add(p);
 
-                        if (p.IsPrimary.Equals("1"))
+                        var photoset = GetPhotoset(set.Id);
+
+                        set.Photos = new List<FlickrPhotoInSet>();
+
+                        foreach (var p in photoset.FlickrPhoto)
                         {
-                            set.Icon = p.Sizes.Large;
+                            var photoFromFlickr = GetPhoto(p.Id);
+                            p.SetValues(photoFromFlickr);
+                            p.Sizes = GetSizes(p.Id);
+                            set.Photos.Add(p);
+
+                            if (p.IsPrimary.Equals("1"))
+                            {
+                                set.Icon = p.Sizes.Large;
+                            }
+                            Console.WriteLine("complete: " + i++);
                         }
-                        i++;
-                        Console.WriteLine("complete: " + i);
-                        if (i > 1999) break;
+                        Console.WriteLine("set " + setNr++ + " / " + c.Sets.Count);
                     }
-                    if (i > 1999) break;
-                } 
-                if (i > 1999) break;
+
+                }
+                setNr = 1;
+                colNr++;
             }
 
             //convert list to string
